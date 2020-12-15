@@ -179,7 +179,6 @@ config = {
 				'webUICreateDelete': '',
 				'webUIFavorites': '',
 				'webUIFiles': '',
-				'webUIFileActionsMenu': '',
 				'webUILogin': '',
 				'webUIManageQuota': '',
 				'webUIManageUsersGroups': 'webUIManageUsersGrps',
@@ -215,6 +214,16 @@ config = {
 			'useHttps': False,
 			'extraApps': {
 				'notifications': 'composer install'
+			},
+		},
+		'webUIFileActionsMenu': {
+			'suites': {
+				'webUIFileActionsMenu': '',
+			},
+			'useHttps': False,
+			'extraApps': {
+				'files_texteditor': 'make vendor',
+				'richdocuments': 'make vendor',
 			},
 		},
 		'webUIFederation': {
