@@ -78,3 +78,24 @@ Feature: upload file
       | dav_version |
       | old         |
       | new         |
+
+  @issue-ocis-1001
+  Scenario Outline: upload a file with invalid-name and check download content
+    Given using <dav_version> DAV path
+    And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
+      | Upload-Length   | 10                  |
+      | Tus-Resumable   | 1.0.0               |
+      | Upload-Metadata | filename <metadata> |
+    When user "Alice" sends a chunk to the last created TUS Location with offset "0" and data "123" using the WebDAV API
+    Then the HTTP status code should be "204"
+    And the content of file <file_name> for user "Alice" should be "123"
+    Examples:
+      | dav_version | file_name           | metadata                 |
+      | old         | " "                 | IAo=                     |
+      | old         | "filewithLF-and-CR" | ZmlsZXdpdGhMRi1hbmQtQ1IK |
+      | old         | "folder/file"       | Zm9sZGVyL2ZpbGUK         |
+      | old         | "my\\file"          | bXkMaWxl                 |
+      | new         | " "                 | IAo=                     |
+      | new         | "filewithLF-and-CR" | ZmlsZXdpdGhMRi1hbmQtQ1IK |
+      | new         | "folder/file"       | Zm9sZGVyL2ZpbGUK         |
+      | new         | "my\\file"          | bXkMaWxl                 |
