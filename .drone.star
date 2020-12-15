@@ -179,6 +179,7 @@ config = {
 				'webUICreateDelete': '',
 				'webUIFavorites': '',
 				'webUIFiles': '',
+				'webUIFileActionsMenu': '',
 				'webUILogin': '',
 				'webUIManageQuota': '',
 				'webUIManageUsersGroups': 'webUIManageUsersGrps',
