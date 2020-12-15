@@ -70,9 +70,10 @@ class WebUIFileActionsMenuContext extends RawMinkContext implements Context {
 	) {
 		$menuContent = $this->filesPage->getFileActionsApplicationSelectMenu();
 		foreach ($menuItems->getRows()[0] as $item) {
-			PHPUnit\Framework\Assert::assertEquals(
-				\strpos($menuContent, $item),
-				true
+			PHPUnit\Framework\Assert::assertStringContainsString(
+				$item,
+				$menuContent,
+				__METHOD__ . " Item '$item' was not found."
 			);
 		}
 	}
@@ -87,9 +88,10 @@ class WebUIFileActionsMenuContext extends RawMinkContext implements Context {
 	public function theFileActionsMenuShouldBeDisplayed(\Behat\Gherkin\Node\TableNode $menuItems) {
 		$menuContent = $this->filesPage->getFileActionsMenu();
 		foreach ($menuItems->getRows()[0] as $item) {
-			PHPUnit\Framework\Assert::assertEquals(
-				\strpos($menuContent, $item),
-				true
+			PHPUnit\Framework\Assert::assertStringContainsString(
+				$item,
+				$menuContent,
+				__METHOD__ . " Item '$item' was not found."
 			);
 		}
 	}
